@@ -26,21 +26,21 @@ import {
 
 // Sample data
 const salesData = [
-  { name: 'Mon', sales: 4000 },
-  { name: 'Tue', sales: 3000 },
-  { name: 'Wed', sales: 2000 },
-  { name: 'Thu', sales: 2780 },
-  { name: 'Fri', sales: 1890 },
-  { name: 'Sat', sales: 2390 },
-  { name: 'Sun', sales: 3490 },
+  { name: 'Domingo', sales: 4000 },
+  { name: 'Segunda', sales: 3490 },
+  { name: 'Terça', sales: 3000 },
+  { name: 'Quarta', sales: 2000 },
+  { name: 'Quinta', sales: 2780 },
+  { name: 'Terça', sales: 1890 },
+  { name: 'Sábado', sales: 2390 },
 ]
 
 const recentOrders = [
-  { id: 1, customer: 'John Doe', order: 'Pepperoni Pizza', total: '$15.99', status: 'Delivered' },
-  { id: 2, customer: 'Jane Smith', order: 'Margherita Pizza', total: '$12.99', status: 'Preparing' },
-  { id: 3, customer: 'Bob Johnson', order: 'Hawaiian Pizza', total: '$14.99', status: 'In Transit' },
-  { id: 4, customer: 'Alice Brown', order: 'Veggie Pizza', total: '$13.99', status: 'Delivered' },
-  { id: 5, customer: 'Charlie Davis', order: 'Meat Lovers Pizza', total: '$16.99', status: 'Preparing' },
+  { id: 1, customer: 'Rodrigo', order: 'Calabresa', total: 'R$35.99', status: 'Entregue' },
+  { id: 2, customer: 'Sabrina', order: 'Margherita', total: 'R$34.99', status: 'Preparando' },
+  { id: 3, customer: 'Daniel', order: 'Carne seca', total: 'R$34.99', status: 'Em trânsito' },
+  { id: 4, customer: 'Alice', order: 'Vegana', total: 'R$33.99', status: 'Entregue' },
+  { id: 5, customer: 'Eduardo', order: 'Quatro Queijos', total: 'R$36.99', status: 'Preparando' },
 ]
 
 export default function PizzeriaDashboard() {
@@ -49,16 +49,16 @@ export default function PizzeriaDashboard() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <header className="flex items-center justify-between px-6 py-4 border-b">
-        <h1 className="text-2xl font-bold">Pizzeria Dashboard</h1>
+        <h1 className="text-2xl font-bold">Pizzaria</h1>
         <div className="flex items-center space-x-4">
           <Button variant="ghost" size="icon" onClick={() => setShowNotifications(!showNotifications)}>
-            <Bell className="h-5 w-5" />
+            <Bell className="h-5 w-5 text-yellow-500" />
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                <Avatar className="h-8 w-8">
-                  <AvatarImage src="/avatars/01.png" alt="@pizzaadmin" />
+                <Avatar className="h-8 w-8 border-green-600 border-2">
+                  <AvatarImage src="/avatar.png" alt="@pizzaadmin" />
                   <AvatarFallback>PA</AvatarFallback>
                 </Avatar>
               </Button>
@@ -67,18 +67,18 @@ export default function PizzeriaDashboard() {
               <DropdownMenuLabel className="font-normal">
                 <div className="flex flex-col space-y-1">
                   <p className="text-sm font-medium leading-none">pizzaadmin</p>
-                  <p className="text-xs leading-none text-muted-foreground">admin@pizzeria.com</p>
+                  <p className="text-xs leading-none text-muted-foreground">admin@pizzaria.com</p>
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                Profile
+              <DropdownMenuItem className='cursor-pointer'>
+                Perfil
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                Settings
+              <DropdownMenuItem className='cursor-pointer'>
+                Configurações
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                Log out
+              <DropdownMenuItem className='cursor-pointer text-red-500'>
+                Sair da conta
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -89,67 +89,67 @@ export default function PizzeriaDashboard() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Total Sales
+                Total de vendas
               </CardTitle>
-              <DollarSign className="h-4 w-4 text-muted-foreground" />
+              <DollarSign className="h-4 w-4 text-muted-foreground text-green-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">$45,231.89</div>
+              <div className="text-2xl font-bold">R$45,231.89</div>
               <p className="text-xs text-muted-foreground">
-                +20.1% from last month
+                +20.1% do último mês
               </p>
             </CardContent>
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Orders Today
+                Vendas hoje
               </CardTitle>
-              <ShoppingCart className="h-4 w-4 text-muted-foreground" />
+              <ShoppingCart className="h-4 w-4 text-muted-foreground text-blue-500" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">+573</div>
               <p className="text-xs text-muted-foreground">
-                +201 since last hour
+                +201 desde a última hora
               </p>
             </CardContent>
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Popular Pizza</CardTitle>
-              <Pizza className="h-4 w-4 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium">Mais pedida</CardTitle>
+              <Pizza className="h-4 w-4 text-muted-foreground text-yellow-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">Pepperoni</div>
+              <div className="text-2xl font-bold">Quatro queijos</div>
               <p className="text-xs text-muted-foreground">
-                31% of total orders
+                31% dos pedidos totais
               </p>
             </CardContent>
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Customer Satisfaction
+                Satisfação dos clientes
               </CardTitle>
-              <Star className="h-4 w-4 text-muted-foreground" />
+              <Star className="h-4 w-4 text-muted-foreground text-yellow-400" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">4.9</div>
               <p className="text-xs text-muted-foreground">
-                +0.2 from last week
+                +0.2 da última semana
               </p>
             </CardContent>
           </Card>
         </div>
         <Card>
           <CardHeader>
-            <CardTitle>Weekly Sales</CardTitle>
+            <CardTitle>Vendas da semana</CardTitle>
           </CardHeader>
           <CardContent>
             <ChartContainer
               config={{
                 sales: {
-                  label: "Sales",
+                  label: "Vendas",
                   color: "hsl(var(--chart-1))",
                 },
               }}
@@ -175,9 +175,9 @@ export default function PizzeriaDashboard() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Order ID</TableHead>
-                  <TableHead>Customer</TableHead>
-                  <TableHead>Order</TableHead>
+                  <TableHead>ID da compra</TableHead>
+                  <TableHead>Cliente</TableHead>
+                  <TableHead>Pedido</TableHead>
                   <TableHead>Total</TableHead>
                   <TableHead>Status</TableHead>
                 </TableRow>
